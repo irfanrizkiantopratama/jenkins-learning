@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  socat:
+    image: alpine/socat
+    container_name: docker-node
+    restart: always
+    command: tcp-listen:2375,fork,reuseaddr unix-connect:/var/run/docker.sock
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - jenkins
+    ports:
+      - 127.0.0.1:2376:2375
+
+networks:
+  jenkins:
