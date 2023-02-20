@@ -2,13 +2,4 @@ FROM jenkins/agent:alpine-jdk11
 USER root
 RUN apk add python3
 RUN apk add py3-pip
-
-# Install Terraform
-RUN apk add --no-cache curl \
-    && release=$(curl -s https://api.github.com/repos/hashicorp/terraform/releases/latest | grep -oP '"tag_name": "\K(.*)(?=")') \
-    && wget https://releases.hashicorp.com/terraform/${release}/terraform_${release}_linux_amd64.zip \
-    && unzip terraform_${release}_linux_amd64.zip \
-    && mv terraform /usr/bin/terraform \
-    && rm terraform_${release}_linux_amd64.zip
-
 USER jenkins
