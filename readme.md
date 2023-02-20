@@ -1,5 +1,3 @@
-
-
 # Installation
 ## Build the Jenkins BlueOcean Docker Image
 ```
