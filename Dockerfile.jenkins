@@ -3,4 +3,5 @@ USER root
 RUN apk add python3
 RUN apk add py3-pip
 RUN apk add nodejs npm
+RUN apk add redis
 USER jenkins
