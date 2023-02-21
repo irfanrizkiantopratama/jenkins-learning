@@ -8,6 +8,7 @@ docker build -t myjenkins-blueocean:2.332.3-1 .
 
 ```
 docker network create jenkins
+
 ```
 
 ## Run the Container
