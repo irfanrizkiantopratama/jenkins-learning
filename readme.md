@@ -8,8 +8,6 @@ docker build -f <name-of-dockerfile> --platform=linux/arm64  .
 ```
 docker build -f <name-of-dockerfile> --platform=linux/amd64 .
 ```
-
-
 ## Run the Container use docker-compose
 docker-compose -f <name-of-file-compose> up -d  
 
@@ -17,7 +15,6 @@ docker-compose -f <name-of-file-compose> up -d
 ```
 docker exec jenkins-blueocean cat /var/jenkins_home/secrets/initialAdminPassword
 ```
-
 ## Connect to the Jenkins
 ```
 https://localhost:8080/
