@@ -31,7 +31,7 @@ https://www.jenkins.io/doc/book/installing/docker/
 https://stackoverflow.com/questions/47709208/how-to-find-docker-host-uri-to-be-used-in-jenkins-docker-plugin
 ```
 
-use docker-compose -f docker-node up -d
+use docker-compose -f docker-node.yaml up -d
 docker inspect <container_id> | grep IPAddress
 ```
 
