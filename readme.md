@@ -1,38 +1,17 @@
 # Installation
-## Build the Jenkins BlueOcean Docker Image
+## Build the Jenkins BlueOcean Docker Image if arm64 version 
 ```
-docker build -t myjenkins-blueocean:2.332.3-1 .
+docker build -f <name-of-dockerfile> --platform=linux/arm64  .
 ```
-
-## Create the network 'jenkins'
-
-```
-docker network create jenkins
+## Build the Jenkins BlueOcean Docker Image if amd64 version 
 
 ```
-
-## Run the Container
-### MacOS / Linux
-```
-docker run --name jenkins-blueocean --restart=on-failure --detach \
-  --network jenkins --env DOCKER_HOST=tcp://docker:2376 \
-  --env DOCKER_CERT_PATH=/certs/client --env DOCKER_TLS_VERIFY=1 \
-  --publish 8080:8080 --publish 50000:50000 \
-  --volume jenkins-data:/var/jenkins_home \
-  --volume jenkins-docker-certs:/certs/client:ro \
-  myjenkins-blueocean:2.332.3-1
+docker build -f <name-of-dockerfile> --platform=linux/amd64 .
 ```
 
-### Windows
-```
-docker run --name jenkins-blueocean --restart=on-failure --detach `
-  --network jenkins --env DOCKER_HOST=tcp://docker:2376 `
-  --env DOCKER_CERT_PATH=/certs/client --env DOCKER_TLS_VERIFY=1 `
-  --volume jenkins-data:/var/jenkins_home `
-  --volume jenkins-docker-certs:/certs/client:ro `
-  --publish 8080:8080 --publish 50000:50000 myjenkins-blueocean:2.332.3-1
-```
 
+## Run the Container use docker-compose
+docker-compose -f <name-of-file-compose> up -d  
 
 ## Get the Password
 ```
@@ -56,7 +35,7 @@ docker run -d --restart=always -p 127.0.0.1:2376:2375 --network jenkins -v /var/
 docker inspect <container_id> | grep IPAddress
 ```
 
-## Using my Jenkins Python Agent
+## Using my Jenkins agent
 ```
-docker pull devopsjourney1/myjenkinsagents:python
+docker pull redheaven/agent:v1
 ```
