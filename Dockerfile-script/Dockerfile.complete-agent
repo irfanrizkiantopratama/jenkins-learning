@@ -11,18 +11,17 @@ RUN wget -O /tmp/terraform.zip https://releases.hashicorp.com/terraform/${TERRAF
     unzip /tmp/terraform.zip -d /usr/local/bin && \
     rm /tmp/terraform.zip
 
-# Copy AWS credentials to a temporary file
-ARG AWS_CREDENTIALS_FILE
-COPY $AWS_CREDENTIALS_FILE /tmp/aws-credentials
+# Set AWS credential as environment variable
+ARG AWS_ACCESS_KEY_ID
+ARG AWS_SECRET_ACCESS_KEY
+ENV AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
+ENV AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
 
-# Install AWS CLI and configure credentials
+# Install AWS CLI
 RUN wget "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -O "awscliv2.zip" && \
     unzip awscliv2.zip && \
     ./aws/install && \
-    rm awscliv2.zip && \
-    source /tmp/aws-credentials && \
-    aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID && \
-    aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
+    rm awscliv2.zip
 
 USER jenkins
 
